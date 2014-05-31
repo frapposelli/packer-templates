@@ -1,0 +1,80 @@
+{
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "script": "scripts/ubuntu-vmware-tools_install.sh"
+    },
+    {
+      "type": "puppet-masterless",
+      "execute_command": "{{.FacterVars}}{{if .Sudo}} echo 'vagrant' | sudo -E -S {{end}} puppet apply --verbose --modulepath='{{.ModulePath}}' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}",
+      "manifest_file": "puppet/manifests/vagrant.pp",
+      "manifest_dir": "puppet/manifests",
+      "module_paths": [
+        "puppet/modules"
+      ] 
+    }
+  ],
+  "builders": [
+    {
+      "name": "trusty32",
+      "vm_name": "trusty32",
+      "vmdk_name": "trusty32-disk0",
+      "type": "vmware-iso",
+      "guest_os_type": "ubuntu",
+      "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-i386.iso",
+      "iso_checksum": "08d25bf879e353686a974b7b14ae7d81",
+      "iso_checksum_type": "md5",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "http_directory": ".",
+      "tools_upload_flavor": "linux",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic ",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/ubuntu-preseed.cfg ",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname=trusty32 ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "initrd=/install/initrd.gz -- <enter>"
+      ]
+    },
+    {
+      "name": "trusty64",
+      "vm_name": "trusty64",
+      "vmdk_name": "trusty64-disk0",
+      "type": "vmware-iso",
+      "guest_os_type": "ubuntu-64",
+      "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-amd64.iso",
+      "iso_checksum": "01545fa976c8367b4f0d59169ac4866c",
+      "iso_checksum_type": "md5",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "http_directory": ".",
+      "tools_upload_flavor": "linux",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic ",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/ubuntu-preseed.cfg ",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname=trusty64 ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "initrd=/install/initrd.gz -- <enter>"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+        "type": "vagrant-vmware-ovf",
+        "provider": "vcloud"
+    }
+  ]
+}

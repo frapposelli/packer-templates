@@ -1,0 +1,80 @@
+{
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "script": "scripts/ubuntu-vmware-tools_install.sh"
+    },
+    {
+      "type": "puppet-masterless",
+      "execute_command": "{{.FacterVars}}{{if .Sudo}} echo 'vagrant' | sudo -E -S {{end}} puppet apply --verbose --modulepath='{{.ModulePath}}' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}",
+      "manifest_file": "puppet/manifests/vagrant.pp",
+      "manifest_dir": "puppet/manifests",
+      "module_paths": [
+        "puppet/modules"
+      ] 
+    }
+  ],
+  "builders": [
+    {
+      "name": "raring32",
+      "vm_name": "raring32",
+      "vmdk_name": "raring32-disk0",
+      "type": "vmware-iso",
+      "guest_os_type": "ubuntu",
+      "iso_url": "http://releases.ubuntu.com/raring/ubuntu-13.04-server-i386.iso",
+      "iso_checksum": "73d595b804149fca9547ed94db8ff44f",
+      "iso_checksum_type": "md5",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "http_directory": ".",
+      "tools_upload_flavor": "linux",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic ",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/ubuntu-preseed.cfg ",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname=raring32 ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "initrd=/install/initrd.gz -- <enter>"
+      ]
+    },
+    {
+      "name": "raring64",
+      "vm_name": "raring64",
+      "vmdk_name": "raring64-disk0",
+      "type": "vmware-iso",
+      "guest_os_type": "ubuntu-64",
+      "iso_url": "http://releases.ubuntu.com/raring/ubuntu-13.04-server-amd64.iso",
+      "iso_checksum": "7d335ca541fc4945b674459cde7bffb9",
+      "iso_checksum_type": "md5",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_wait_timeout": "60m",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "http_directory": ".",
+      "tools_upload_flavor": "linux",
+      "boot_command": [
+        "<esc><esc><enter><wait>",
+        "/install/vmlinuz noapic ",
+        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/ubuntu-preseed.cfg ",
+        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+        "hostname=raring64 ",
+        "fb=false debconf/frontend=noninteractive ",
+        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
+        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+        "initrd=/install/initrd.gz -- <enter>"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+        "type": "vagrant-vmware-ovf",
+        "provider": "vcenter"
+    }
+  ]
+}
