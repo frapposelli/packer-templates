@@ -1,0 +1,48 @@
+{
+  "builders": [
+    {
+      "name": "esxi55",
+      "vm_name": "esxi55",
+      "vmdk_name": "esxi55-disk0",
+      "type": "vmware-iso",
+      "guest_os_type": "vmkernel5",
+      "iso_url": "http://fas2020.ad.lab.gosddc.com/VMware/ISO/VMware-VMvisor-Installer-5.5.0-1331820.x86_64.iso",
+      "iso_checksum": "ef599dc7e647177027684c0eee346ccdbc8704f2",
+      "iso_checksum_type": "sha1",
+      "ssh_username": "root",
+      "ssh_password": "VMware1!",
+      "ssh_wait_timeout": "60m",
+      "shutdown_command": "esxcli system maintenanceMode set -e true -t 0 ; esxcli system shutdown poweroff -d 10 -r 'Shell initiated system shutdown' ; esxcli system maintenanceMode set -e false -t 0",
+      "http_directory": ".",
+      "boot_wait": "4s",
+      "vmx_data": {
+        "memsize": "4096",
+        "numvcpus": "2",
+        "vhv.enable": "TRUE"
+      },
+      "boot_command": [
+        "<enter><wait>O<wait> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/esxi-5-kickstart.cfg<enter>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scripts/esxi-vagrant_ssh_key.sh"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/esxi-cloning_configuration.sh"
+    },
+   {
+      "type": "shell",
+      "script": "scripts/esxi-vmware-tools_install.sh"
+    }
+  ],
+  "post-processors": [
+   {
+       "type": "vagrant-vmware-ovf",
+       "provider": "vcenter"
+   }
+  ]
+}
