@@ -17,3 +17,4 @@ File {
 
 # all boxes get the base config
 include vagrantbaseconfig
+

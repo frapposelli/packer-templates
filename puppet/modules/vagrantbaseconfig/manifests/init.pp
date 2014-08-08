@@ -4,55 +4,84 @@
 #
 class vagrantbaseconfig {
 
-  file {
-    '/home/vagrant/.bashrc':
-      owner  => 'vagrant',
-      group  => 'vagrant',
-      mode   => '0644',
-      source => 'puppet:///modules/vagrantbaseconfig/bashrc.sh';
-  }
+  case $::kernel {
+    'linux': {
+      notify { "Launching provisioning for ${::kernel}": }
 
-  file {
-    '/home/vagrant/.bash_profile':
-    owner  => 'vagrant',
-    group  => 'vagrant',
-    mode   => '0644',
-    source => 'puppet:///modules/vagrantbaseconfig/bash_profile.sh';
-  }
+      file {
+        '/home/vagrant/.bashrc':
+        owner  => 'vagrant',
+        group  => 'vagrant',
+        mode   => '0644',
+        source => 'puppet:///modules/vagrantbaseconfig/bashrc.sh';
+      }
 
-  file {
-    '/etc/sudoers':
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0440',
-    source => 'puppet:///modules/vagrantbaseconfig/sudoers';
-  }
+      file {
+        '/home/vagrant/.bash_profile':
+        owner  => 'vagrant',
+        group  => 'vagrant',
+        mode   => '0644',
+        source => 'puppet:///modules/vagrantbaseconfig/bash_profile.sh';
+      }
 
-  file {
-    '/home/vagrant/.ssh':
-    ensure => directory,
-    owner  => 'vagrant',
-    group  => 'vagrant',
-    mode   => '0700',
-  }
+      file {
+        '/etc/sudoers':
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0440',
+        source => 'puppet:///modules/vagrantbaseconfig/sudoers';
+      }
 
-  file {
-    '/home/vagrant/.ssh/authorized_keys':
-    ensure  => present,
-    owner   => 'vagrant',
-    group   => 'vagrant',
-    mode    => '0600',
-    source  => 'puppet:///modules/vagrantbaseconfig/vagrant.pub',
-    require => File['/home/vagrant/.ssh']
-  }
+      file {
+        '/home/vagrant/.ssh':
+        ensure => directory,
+        owner  => 'vagrant',
+        group  => 'vagrant',
+        mode   => '0700',
+      }
 
-  file {
-    '/etc/ssh/sshd_config':
-    path    => '/etc/ssh/sshd_config',
-    owner   => root,
-    group   => root,
-    mode    => '0444',
-    source  => 'puppet:///modules/vagrantbaseconfig/sshd_config'
+      file {
+        '/home/vagrant/.ssh/authorized_keys':
+        ensure  => present,
+        owner   => 'vagrant',
+        group   => 'vagrant',
+        mode    => '0600',
+        source  => 'puppet:///modules/vagrantbaseconfig/vagrant.pub',
+        require => File['/home/vagrant/.ssh']
+      }
+
+      file {
+        '/etc/ssh/sshd_config':
+        path    => '/etc/ssh/sshd_config',
+        owner   => root,
+        group   => root,
+        mode    => '0444',
+        source  => 'puppet:///modules/vagrantbaseconfig/sshd_config'
+      }
+    }
+
+    'windows': {
+      notify { "Launching provisioning for ${::kernel}": }
+
+      file {
+        'C:/Users/vagrant/.ssh/authorized_keys':
+        ensure  => present,
+        owner   => 'vagrant',
+        group   => 'vagrant',
+        mode    => '0600',
+        source  => 'puppet:///modules/vagrantbaseconfig/vagrant.pub'
+      }
+
+      service { 'TermService':
+        ensure => running,
+        enable => true
+      }
+    }
+
+    default: {
+      notify { "Support for kernel ${::kernel} not implemented": }
+    }
   }
 
 }
+
