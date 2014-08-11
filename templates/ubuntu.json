@@ -5,6 +5,7 @@
       "vm_name": "precise32",
       "vmdk_name": "precise32-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu",
       "iso_url": "http://releases.ubuntu.com/12.04.4/ubuntu-12.04.4-server-i386.iso",
       "iso_checksum": "0081e57fb8c7e4094fb9767384f087c6",
@@ -32,6 +33,7 @@
       "vm_name": "precise64",
       "vmdk_name": "precise64-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu-64",
       "iso_url": "http://releases.ubuntu.com/12.04.4/ubuntu-12.04.4-server-amd64.iso",
       "iso_checksum": "e83adb9af4ec0a039e6a5c6e145a34de",
@@ -59,6 +61,7 @@
       "vm_name": "quantal32",
       "vmdk_name": "quantal32-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu",
       "iso_url": "http://releases.ubuntu.com/quantal/ubuntu-12.10-server-i386.iso",
       "iso_checksum": "b3d4d4edfc8f291af0b83f8a2ba19a2f",
@@ -86,6 +89,7 @@
       "vm_name": "quantal64",
       "vmdk_name": "quantal64-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu-64",
       "iso_url": "http://releases.ubuntu.com/quantal/ubuntu-12.10-server-amd64.iso",
       "iso_checksum": "4bd3270bde86d7e4e017e3847a4af485",
@@ -113,6 +117,7 @@
       "vm_name": "raring32",
       "vmdk_name": "raring32-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu",
       "iso_url": "http://releases.ubuntu.com/raring/ubuntu-13.04-server-i386.iso",
       "iso_checksum": "73d595b804149fca9547ed94db8ff44f",
@@ -140,6 +145,7 @@
       "vm_name": "raring64",
       "vmdk_name": "raring64-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu-64",
       "iso_url": "http://releases.ubuntu.com/raring/ubuntu-13.04-server-amd64.iso",
       "iso_checksum": "7d335ca541fc4945b674459cde7bffb9",
@@ -167,6 +173,7 @@
       "vm_name": "saucy32",
       "vmdk_name": "saucy32-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu",
       "iso_url": "http://releases.ubuntu.com/saucy/ubuntu-13.10-server-i386.iso",
       "iso_checksum": "77043904185d7efa0966b1c2c153805b",
@@ -194,6 +201,7 @@
       "vm_name": "saucy64",
       "vmdk_name": "saucy64-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu-64",
       "iso_url": "http://releases.ubuntu.com/saucy/ubuntu-13.10-server-amd64.iso",
       "iso_checksum": "4d1a8b720cdd14b76ed9410c63a00d0e",
@@ -221,6 +229,7 @@
       "vm_name": "trusty32",
       "vmdk_name": "trusty32-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu",
       "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-i386.iso",
       "iso_checksum": "08d25bf879e353686a974b7b14ae7d81",
@@ -248,6 +257,7 @@
       "vm_name": "trusty64",
       "vmdk_name": "trusty64-disk0",
       "type": "vmware-iso",
+      "headless": true,
       "guest_os_type": "ubuntu-64",
       "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-amd64.iso",
       "iso_checksum": "01545fa976c8367b4f0d59169ac4866c",
@@ -291,16 +301,5 @@
       "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "script": "scripts/ubuntu-vmware-vcloud_cleanup.sh"
     }
-  ],
-  "post-processors": [
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcenter"
-    },
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcloud"
-    }
-
   ]
 }
