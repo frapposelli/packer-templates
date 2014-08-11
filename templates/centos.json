@@ -13,7 +13,7 @@
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
-      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -P now",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -h now",
       "http_directory": ".",
       "tools_upload_flavor": "linux",
       "boot_command": [
@@ -33,7 +33,7 @@
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
-      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -P now",
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -h now",
       "http_directory": ".",
       "tools_upload_flavor": "linux",
       "boot_command": [
