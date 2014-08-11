@@ -65,5 +65,15 @@
       "type": "shell",
       "script": "scripts/esxi-vmware-tools_install.sh"
     }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant-vmware-ovf",
+      "provider": "vcenter"
+    },
+    {
+      "type": "vagrant-vmware-ovf",
+      "provider": "vcloud"
+    }
   ]
 }

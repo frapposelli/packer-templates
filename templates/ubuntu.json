@@ -301,5 +301,15 @@
       "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "script": "scripts/ubuntu-vmware-vcloud_cleanup.sh"
     }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant-vmware-ovf",
+      "provider": "vcenter"
+    },
+    {
+      "type": "vagrant-vmware-ovf",
+      "provider": "vcloud"
+    }
   ]
 }

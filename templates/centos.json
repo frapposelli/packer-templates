@@ -121,5 +121,15 @@
       "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
       "script": "scripts/centos-vmware-vcloud_cleanup.sh"
     }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant-vmware-ovf",
+      "provider": "vcenter"
+    },
+    {
+      "type": "vagrant-vmware-ovf",
+      "provider": "vcloud"
+    }
   ]
 }
