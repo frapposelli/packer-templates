@@ -85,7 +85,7 @@ for j in $VolumeGroup
 do
         echo $j
         $PREFIX/lvcreate -l `$PREFIX/vgdisplay $j | grep Free | awk -F" " '{ print $5 }'` -n zero $j
-        if [ -a /dev/$j/zero ]; then
+        if [ -e /dev/$j/zero ]; then
                 cat /dev/zero > /dev/$j/zero
                 /bin/sync
                 sleep 15
