@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "version": ""
+  },
   "builders": [
     {
       "name": "precise32",
@@ -302,14 +305,16 @@
       "script": "scripts/ubuntu-vmware-vcloud_cleanup.sh"
     }
   ],
-  "post-processors": [
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcenter"
-    },
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcloud"
-    }
-  ]
+ "post-processors": [
+   {
+     "type": "vagrant-vmware-ovf",
+     "provider": "vcenter",
+     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
+   },
+   {
+     "type": "vagrant-vmware-ovf",
+     "provider": "vcloud",
+     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
+  }
+ ]
 }

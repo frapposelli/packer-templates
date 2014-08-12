@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "version": ""
+  },
   "builders": [
     {
       "name": "centos510-x86",
@@ -123,13 +126,15 @@
     }
   ],
   "post-processors": [
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcenter"
-    },
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcloud"
-    }
+   {
+     "type": "vagrant-vmware-ovf",
+     "provider": "vcenter",
+     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
+   },
+   {
+     "type": "vagrant-vmware-ovf",
+     "provider": "vcloud",
+     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
+  }
   ]
 }
