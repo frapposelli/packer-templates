@@ -9,6 +9,7 @@
       "vmdk_name": "precise32-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu",
       "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/precise/ubuntu-12.04.4-server-i386.iso",
       "iso_checksum": "3bae12e315c89d42d7bf571e4e35efce585c7624",
@@ -37,6 +38,7 @@
       "vmdk_name": "precise64-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu-64",
       "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/precise/ubuntu-12.04.4-server-amd64.iso",
       "iso_checksum": "b802bb065df98c0530d782eb94778c2da19e10d6",
@@ -65,6 +67,7 @@
       "vmdk_name": "saucy32-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu",
       "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/saucy/ubuntu-13.10-server-i386.iso",
       "iso_checksum": "77043904185d7efa0966b1c2c153805b",
@@ -93,6 +96,7 @@
       "vmdk_name": "saucy64-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu-64",
       "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/saucy/ubuntu-13.10-server-amd64.iso",
       "iso_checksum": "4d1a8b720cdd14b76ed9410c63a00d0e",
@@ -121,6 +125,7 @@
       "vmdk_name": "trusty32-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu",
       "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/trusty/ubuntu-14.04.1-server-i386.iso",
       "iso_checksum": "22c6764a4b9335d7b384a081e0fed104236c99d9",
@@ -149,6 +154,7 @@
       "vmdk_name": "trusty64-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu-64",
       "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/trusty/ubuntu-14.04.1-server-amd64.iso",
       "iso_checksum": "401c5f6666fe2879ac3a9a3247b487723410cf88",
@@ -201,13 +207,7 @@
  "post-processors": [
    {
      "type": "vagrant-vmware-ovf",
-     "provider": "vcenter",
      "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
-   },
-   {
-     "type": "vagrant-vmware-ovf",
-     "provider": "vcloud",
-     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
-  }
+   }
  ]
 }

@@ -9,6 +9,7 @@
       "vmdk_name": "centos510-x86-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "rhel5",
       "iso_url": "http://centos.bhs.mirrors.ovh.net/ftp.centos.org/5.10/isos/i386/CentOS-5.10-i386-bin-DVD-1of2.iso",
       "iso_checksum": "bb4e61210e1c0389fdf55c59bd2dd7bc957dd400",
@@ -29,6 +30,7 @@
       "vmdk_name": "centos510-x64-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "rhel5-64",
       "iso_url": "http://centos.bhs.mirrors.ovh.net/ftp.centos.org/5.10/isos/x86_64/CentOS-5.10-x86_64-bin-DVD-1of2.iso",
       "iso_checksum": "d8403b3fe4972eda3e147ee76d682a4a3beae1e1",
@@ -49,6 +51,7 @@
       "vmdk_name": "centos65-x86-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "rhel6",
       "iso_url": "http://centos.bhs.mirrors.ovh.net/ftp.centos.org/6.5/isos/i386/CentOS-6.5-i386-bin-DVD1.iso",
       "iso_checksum": "67ea68068ae53d1f23431072ec0288b3e1abfe4d",
@@ -69,6 +72,7 @@
       "vmdk_name": "centos65-x64-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "rhel6-64",
       "iso_url": "http://centos.bhs.mirrors.ovh.net/ftp.centos.org/6.5/isos/x86_64/CentOS-6.5-x86_64-bin-DVD1.iso",
       "iso_checksum": "32c7695b97f7dcd1f59a77a71f64f2957dddf738",
@@ -89,6 +93,7 @@
       "vmdk_name": "centos70-x64-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "rhel7-64",
       "iso_url": "http://centos.bhs.mirrors.ovh.net/ftp.centos.org/7/isos/x86_64/CentOS-7.0-1406-x86_64-DVD.iso",
       "iso_checksum": "154ba47b7a37e52e0100310c3aeb8f9d9daf4806",
@@ -128,13 +133,7 @@
   "post-processors": [
    {
      "type": "vagrant-vmware-ovf",
-     "provider": "vcenter",
      "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
-   },
-   {
-     "type": "vagrant-vmware-ovf",
-     "provider": "vcloud",
-     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
-  }
+   }
   ]
 }

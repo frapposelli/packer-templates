@@ -6,6 +6,7 @@
       "vmdk_name": "esxi55-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 4096,
       "guest_os_type": "vmkernel5",
       "iso_url": "http://fas2020.ad.lab.gosddc.com/VMware/ISO/VMware-VMvisor-Installer-5.5.0-1331820.x86_64.iso",
       "iso_checksum": "ef599dc7e647177027684c0eee346ccdbc8704f2",
@@ -31,6 +32,7 @@
       "vmdk_name": "esxi60-disk0",
       "type": "vmware-iso",
       "headless": true,
+      "disk_size": 4096,
       "guest_os_type": "vmkernel5",
       "iso_url": "http://fas2020.ad.lab.gosddc.com/VMware/ISO/VMware-VMvisor-Installer-6.0.0-1921158.x86_64.iso",
       "iso_checksum": "d7625091377bae2c43c0fb4136cf4323971b17f1",
@@ -68,12 +70,7 @@
   ],
   "post-processors": [
     {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcenter"
-    },
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcloud"
+      "type": "vagrant-vmware-ovf"
     }
   ]
 }
