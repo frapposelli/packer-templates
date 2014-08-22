@@ -70,7 +70,9 @@
   ],
   "post-processors": [
     {
-      "type": "vagrant-vmware-ovf"
+      "type": "vagrant-vmware-ovf",
+      "compression_level": 9,
+      "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
     }
   ]
 }
