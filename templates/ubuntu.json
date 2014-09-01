@@ -208,18 +208,6 @@
    {
      "type": "vagrant-vmware-ovf",
      "compression_level": 9,
-     "provider": "vcenter",
-     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
-   },
-   {
-     "type": "vagrant-vmware-ovf",
-     "compression_level": 9,
-     "provider": "vcloud",
-     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
-   },
-   {
-     "type": "vagrant-vmware-ovf",
-     "compression_level": 9,
      "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
    }
  ]

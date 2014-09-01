@@ -11,7 +11,7 @@
       "headless": true,
       "disk_size": 4096,
       "guest_os_type": "vmkernel5",
-      "iso_url": "http://fas2020.ad.lab.gosddc.com/VMware/ISO/VMware-VMvisor-Installer-5.5.0-1331820.x86_64.iso",
+      "iso_url": "./iso/VMware-VMvisor-Installer-5.5.0-1331820.x86_64.iso",
       "iso_checksum": "ef599dc7e647177027684c0eee346ccdbc8704f2",
       "iso_checksum_type": "sha1",
       "ssh_username": "root",
@@ -37,7 +37,7 @@
       "headless": true,
       "disk_size": 4096,
       "guest_os_type": "vmkernel5",
-      "iso_url": "http://fas2020.ad.lab.gosddc.com/VMware/ISO/VMware-VMvisor-Installer-6.0.0-1921158.x86_64.iso",
+      "iso_url": "./iso/VMware-VMvisor-Installer-6.0.0-1921158.x86_64.iso",
       "iso_checksum": "d7625091377bae2c43c0fb4136cf4323971b17f1",
       "iso_checksum_type": "sha1",
       "ssh_username": "root",
@@ -64,6 +64,10 @@
     },
     {
       "type": "shell",
+      "script": "scripts/esxi-vmware-tools_install.sh"
+    },
+    {
+      "type": "shell",
       "script": "scripts/esxi-cloning_configuration.sh"
     }
   ],
@@ -71,19 +75,6 @@
    {
      "type": "vagrant-vmware-ovf",
      "compression_level": 9,
-     "provider": "vcenter",
-     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
-   },
-   {
-     "type": "vagrant-vmware-ovf",
-     "compression_level": 9,
-     "provider": "vcloud",
-     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
-   },
-   {
-     "type": "vagrant-vmware-ovf",
-     "compression_level": 9,
-     "provider": "vmware_ovf",
      "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
    }
   ]
