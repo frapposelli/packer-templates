@@ -1,14 +1,19 @@
 {
+  "variables": {
+    "version": ""
+  },
   "builders": [
     {
       "name": "precise32",
       "vm_name": "precise32",
       "vmdk_name": "precise32-disk0",
       "type": "vmware-iso",
+      "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu",
-      "iso_url": "http://releases.ubuntu.com/12.04.4/ubuntu-12.04.4-server-i386.iso",
-      "iso_checksum": "0081e57fb8c7e4094fb9767384f087c6",
-      "iso_checksum_type": "md5",
+      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/precise/ubuntu-12.04.4-server-i386.iso",
+      "iso_checksum": "3bae12e315c89d42d7bf571e4e35efce585c7624",
+      "iso_checksum_type": "sha1",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
@@ -32,10 +37,12 @@
       "vm_name": "precise64",
       "vmdk_name": "precise64-disk0",
       "type": "vmware-iso",
+      "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu-64",
-      "iso_url": "http://releases.ubuntu.com/12.04.4/ubuntu-12.04.4-server-amd64.iso",
-      "iso_checksum": "e83adb9af4ec0a039e6a5c6e145a34de",
-      "iso_checksum_type": "md5",
+      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/precise/ubuntu-12.04.4-server-amd64.iso",
+      "iso_checksum": "b802bb065df98c0530d782eb94778c2da19e10d6",
+      "iso_checksum_type": "sha1",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
@@ -55,120 +62,14 @@
       ]
     },
     {
-      "name": "quantal32",
-      "vm_name": "quantal32",
-      "vmdk_name": "quantal32-disk0",
-      "type": "vmware-iso",
-      "guest_os_type": "ubuntu",
-      "iso_url": "http://releases.ubuntu.com/quantal/ubuntu-12.10-server-i386.iso",
-      "iso_checksum": "b3d4d4edfc8f291af0b83f8a2ba19a2f",
-      "iso_checksum_type": "md5",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "60m",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "http_directory": ".",
-      "tools_upload_flavor": "linux",
-      "boot_command": [
-        "<esc><esc><enter><wait>",
-        "/install/vmlinuz noapic ",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/ubuntu-preseed.cfg ",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-        "hostname=quantal32 ",
-        "fb=false debconf/frontend=noninteractive ",
-        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
-        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-        "initrd=/install/initrd.gz -- <enter>"
-      ]
-    },
-    {
-      "name": "quantal64",
-      "vm_name": "quantal64",
-      "vmdk_name": "quantal64-disk0",
-      "type": "vmware-iso",
-      "guest_os_type": "ubuntu-64",
-      "iso_url": "http://releases.ubuntu.com/quantal/ubuntu-12.10-server-amd64.iso",
-      "iso_checksum": "4bd3270bde86d7e4e017e3847a4af485",
-      "iso_checksum_type": "md5",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "60m",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "http_directory": ".",
-      "tools_upload_flavor": "linux",
-      "boot_command": [
-        "<esc><esc><enter><wait>",
-        "/install/vmlinuz noapic ",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/ubuntu-preseed.cfg ",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-        "hostname=quantal64 ",
-        "fb=false debconf/frontend=noninteractive ",
-        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
-        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-        "initrd=/install/initrd.gz -- <enter>"
-      ]
-    },
-    {
-      "name": "raring32",
-      "vm_name": "raring32",
-      "vmdk_name": "raring32-disk0",
-      "type": "vmware-iso",
-      "guest_os_type": "ubuntu",
-      "iso_url": "http://releases.ubuntu.com/raring/ubuntu-13.04-server-i386.iso",
-      "iso_checksum": "73d595b804149fca9547ed94db8ff44f",
-      "iso_checksum_type": "md5",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "60m",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "http_directory": ".",
-      "tools_upload_flavor": "linux",
-      "boot_command": [
-        "<esc><esc><enter><wait>",
-        "/install/vmlinuz noapic ",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/ubuntu-preseed.cfg ",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-        "hostname=raring32 ",
-        "fb=false debconf/frontend=noninteractive ",
-        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
-        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-        "initrd=/install/initrd.gz -- <enter>"
-      ]
-    },
-    {
-      "name": "raring64",
-      "vm_name": "raring64",
-      "vmdk_name": "raring64-disk0",
-      "type": "vmware-iso",
-      "guest_os_type": "ubuntu-64",
-      "iso_url": "http://releases.ubuntu.com/raring/ubuntu-13.04-server-amd64.iso",
-      "iso_checksum": "7d335ca541fc4945b674459cde7bffb9",
-      "iso_checksum_type": "md5",
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_wait_timeout": "60m",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "http_directory": ".",
-      "tools_upload_flavor": "linux",
-      "boot_command": [
-        "<esc><esc><enter><wait>",
-        "/install/vmlinuz noapic ",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/scripts/ubuntu-preseed.cfg ",
-        "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-        "hostname=raring64 ",
-        "fb=false debconf/frontend=noninteractive ",
-        "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA ",
-        "keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-        "initrd=/install/initrd.gz -- <enter>"
-      ]
-    },
-    {
       "name": "saucy32",
       "vm_name": "saucy32",
       "vmdk_name": "saucy32-disk0",
       "type": "vmware-iso",
+      "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu",
-      "iso_url": "http://releases.ubuntu.com/saucy/ubuntu-13.10-server-i386.iso",
+      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/saucy/ubuntu-13.10-server-i386.iso",
       "iso_checksum": "77043904185d7efa0966b1c2c153805b",
       "iso_checksum_type": "md5",
       "ssh_username": "vagrant",
@@ -194,8 +95,10 @@
       "vm_name": "saucy64",
       "vmdk_name": "saucy64-disk0",
       "type": "vmware-iso",
+      "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu-64",
-      "iso_url": "http://releases.ubuntu.com/saucy/ubuntu-13.10-server-amd64.iso",
+      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/saucy/ubuntu-13.10-server-amd64.iso",
       "iso_checksum": "4d1a8b720cdd14b76ed9410c63a00d0e",
       "iso_checksum_type": "md5",
       "ssh_username": "vagrant",
@@ -221,10 +124,12 @@
       "vm_name": "trusty32",
       "vmdk_name": "trusty32-disk0",
       "type": "vmware-iso",
+      "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu",
-      "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-i386.iso",
-      "iso_checksum": "08d25bf879e353686a974b7b14ae7d81",
-      "iso_checksum_type": "md5",
+      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/trusty/ubuntu-14.04.1-server-i386.iso",
+      "iso_checksum": "22c6764a4b9335d7b384a081e0fed104236c99d9",
+      "iso_checksum_type": "sha1",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
@@ -248,10 +153,12 @@
       "vm_name": "trusty64",
       "vmdk_name": "trusty64-disk0",
       "type": "vmware-iso",
+      "headless": true,
+      "disk_size": 16384,
       "guest_os_type": "ubuntu-64",
-      "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04-server-amd64.iso",
-      "iso_checksum": "01545fa976c8367b4f0d59169ac4866c",
-      "iso_checksum_type": "md5",
+      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/trusty/ubuntu-14.04.1-server-amd64.iso",
+      "iso_checksum": "401c5f6666fe2879ac3a9a3247b487723410cf88",
+      "iso_checksum_type": "sha1",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "60m",
@@ -278,6 +185,11 @@
       "script": "scripts/ubuntu-vmware-tools_install.sh"
     },
     {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+      "script": "scripts/ubuntu-puppet_install.sh"
+    },
+    {
       "type": "puppet-masterless",
       "execute_command": "{{.FacterVars}}{{if .Sudo}} echo 'vagrant' | sudo -E -S {{end}} puppet apply --verbose --modulepath='{{.ModulePath}}' {{if ne .HieraConfigPath \"\"}}--hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}",
       "manifest_file": "puppet/manifests/vagrant.pp",
@@ -292,15 +204,11 @@
       "script": "scripts/ubuntu-vmware-vcloud_cleanup.sh"
     }
   ],
-  "post-processors": [
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcenter"
-    },
-    {
-      "type": "vagrant-vmware-ovf",
-      "provider": "vcloud"
-    }
-
-  ]
+ "post-processors": [
+   {
+     "type": "vagrant-vmware-ovf",
+     "compression_level": 9,
+     "output": "{{.BuildName}}-{{.Provider}}-{{user `version`}}.box"
+   }
+ ]
 }
