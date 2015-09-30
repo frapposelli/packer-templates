@@ -6,6 +6,8 @@
 #
 
 Defaults    env_reset
+Defaults env_keep = "SSH_AUTH_SOCK"
+Defaults:vagrant !requiretty
 
 # Uncomment to allow members of group sudo to not need a password
 # %sudo ALL=NOPASSWD: ALL
