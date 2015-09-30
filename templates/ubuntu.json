@@ -127,8 +127,8 @@
       "headless": true,
       "disk_size": 16384,
       "guest_os_type": "ubuntu",
-      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/trusty/ubuntu-14.04.1-server-i386.iso",
-      "iso_checksum": "22c6764a4b9335d7b384a081e0fed104236c99d9",
+      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/trusty/ubuntu-14.04.3-server-i386.iso",
+      "iso_checksum": "a01ef934fe61e8fbbb78d644f9703177a9b62ca1",
       "iso_checksum_type": "sha1",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
@@ -156,8 +156,8 @@
       "headless": true,
       "disk_size": 16384,
       "guest_os_type": "ubuntu-64",
-      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/trusty/ubuntu-14.04.1-server-amd64.iso",
-      "iso_checksum": "401c5f6666fe2879ac3a9a3247b487723410cf88",
+      "iso_url": "http://ubuntu.bhs.mirrors.ovh.net/ftp.ubuntu.com/releases/trusty/ubuntu-14.04.3-server-amd64.iso",
+      "iso_checksum": "0501c446929f713eb162ae2088d8dc8b6426224a",
       "iso_checksum_type": "sha1",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
@@ -196,7 +196,7 @@
       "manifest_dir": "puppet/manifests",
       "module_paths": [
         "puppet/modules"
-      ] 
+      ]
     },
     {
       "type": "shell",
