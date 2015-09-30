@@ -1,0 +1,29 @@
+{
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scripts/vcsa-setup.sh"
+    }
+  ],
+  "builders": [
+    {
+      "type": "vmware-vmx",
+      "source_path": "vcva.vmx",
+      "shutdown_command": "/sbin/shutdown -h now",
+      "ssh_username": "root",
+      "ssh_password": "vmware",
+      "vm_name": "vcsa",
+      "vmx_data": {
+        "numvcpus": "4",
+        "memsize": "4096",
+        "ethernet0.connectionType": "nat"
+      }
+    }
+  ],
+  "post-processors": [
+    {
+        "type": "vagrant-vmware-ovf",
+        "provider": "vcenter"
+    }
+  ]
+}
